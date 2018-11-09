@@ -1,5 +1,11 @@
 <?php
-
+//Líneas añadidas para permitir transferencia http
+// allow origin
+header('Access-Control-Allow-Origin: *');
+// add any additional headers you need to support here
+header('Access-Control-Allow-Headers: Origin, Content-Type');
+// add all methods
+header('Access-Control-Allow-Methods : POST, GET, PATCH, OPTIONS, PUT, DELETE');
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -53,3 +59,4 @@ $app->singleton(
 */
 
 return $app;
+
