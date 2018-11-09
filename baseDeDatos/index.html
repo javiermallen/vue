@@ -6,9 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Conexión base de datos stories</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div id="app">
+                    <h1 class="text-center text-success">Historias cargadas desde una base de datos</h1>
+                    <ul class="list-group">
+                        <carga-historias v-for="historia in historias" :historia="historia" ></carga-historias>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <template id="representa-historias">
+        <li class="list-group-item">
+            {{ historia.id }} - {{ historia.frase }} - {{ historia.personaje }} - votos: {{ historia.votos }}
+        </li>
+
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="main.js"></script>    </div>
 </body>
 </html>
