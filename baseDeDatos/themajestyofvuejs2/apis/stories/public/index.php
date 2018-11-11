@@ -1,4 +1,8 @@
 <?php
+//Cambios para poder trabajar con http
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH, DELETE");
+header("Access-Control-Allow-Headers: Content-Type");
 
 /**
  * Laravel - A PHP Framework For Web Artisans
