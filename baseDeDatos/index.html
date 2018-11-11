@@ -12,10 +12,24 @@
         <div class="row">
             <div class="col-12">
                 <div id="app">
-                    <h1 class="text-center text-success">Historias cargadas desde una base de datos</h1>
+                    <!-- <h1 class="text-center text-success">Historias cargadas desde una base de datos</h1>
                     <ul class="list-group">
                         <carga-historias v-for="historia in historias" :historia="historia" ></carga-historias>
-                    </ul>
+                    </ul> -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Frase</th>
+                                <th>Protagonista</th>
+                                <th>Votos</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr is="carga-historias" v-for="historia in historias" :historia="historia"></tr>
+                        </tbody>
+                    </table>
 
 
                 </div>
@@ -23,11 +37,25 @@
         </div>
     </div>
     <template id="representa-historias">
-        <li class="list-group-item">
-            {{ historia.id }} - {{ historia.frase }} - {{ historia.personaje }} - votos: {{ historia.votos }}
-        </li>
+        <!-- <li class="list-group-item">
+            {{ historia.id }} - {{ historia.plot }} - {{ historia.writer }} - votos: {{ historia.upvotes }}
+        </li> -->
+        <tr>
+            <td>{{ historia.id }}</td>
+            <td>{{ historia.plot }}</td>
+            <td>{{ historia.writer }}</td>
+            <td>{{ historia.upvotes }}</td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-primary" @click="subirVotos(historia)">Subir Votos</button>
+                </div>
+            </td>
+        </tr>
 
     </template>
+
+    <p class="lead">Esta es la lista de historias</p>
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
     <script src="main.js"></script>    </div>
