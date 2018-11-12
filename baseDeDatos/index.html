@@ -30,7 +30,8 @@
                             <tr is="carga-historias" v-for="historia in historias" :historia="historia"></tr>
                         </tbody>
                     </table>
-
+                    <p class="lead">Esta es la lista de historias</p>
+                    <h3 class="display 3 text-warning">¿Quieres añadir una nueva historia? <button class="btn btn-info" @click="nuevaHistoria">Añadir nueva historia</button>
 
                 </div>
             </div>
@@ -42,19 +43,37 @@
         </li> -->
         <tr>
             <td>{{ historia.id }}</td>
-            <td>{{ historia.plot }}</td>
-            <td>{{ historia.writer }}</td>
+            <td>
+                <!-- Si pulsas en editar se cambia historia.editing a true y podemos modificarlo -->
+                <input type="text"v-if="historia.editing" v-model="historia.plot" class="form-control">
+                <!-- Si no está en false muestra la historia -->
+                <span v-else>{{ historia.plot }}</span>
+            </td>
+            <td>
+                <!-- Si pulsas en editar se cambia historia.editing a true y podemos modificarlo -->
+                <input type="text"v-if="historia.editing" v-model="historia.writer" class="form-control">
+                <!-- Si no está en false muestra la historia -->
+                <span v-else>{{ historia.writer }}</span>
+            </td>
             <td>{{ historia.upvotes }}</td>
             <td>
-                <div class="btn-group">
-                    <button class="btn btn-primary" @click="subirVotos(historia)">Subir Votos</button>
+                <div class="btn-group" v-if="!historia.editing">
+                    <button class="btn btn-primary" @click="subirVotos( historia )">Subir Votos</button>
+                    <button class="btn btn-secondary" @click="editarHistoria( historia )">Editar</button>
+                    <button class="btn btn-danger" @click="eliminarHistoria( historia )">Eliminar historia</button>
+                </div>
+                <div class="btn-group" v-else>
+
+                    <button v-if="historia.id" class="btn btn-success" @click="actualizarHistoria( historia )">Actualizar historia</button>
+                    <button v-else class="btn btn-info" @click="guardarHistoria( historia )">Guardar historia</button>
+                    <button class="btn btn-warning" @click="historia.editing = false">Cancelar</button>
                 </div>
             </td>
         </tr>
 
     </template>
 
-    <p class="lead">Esta es la lista de historias</p>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
